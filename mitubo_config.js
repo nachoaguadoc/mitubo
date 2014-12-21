@@ -3,7 +3,7 @@ var config = {}
 config.mitubo = {};
 
 config.mitubo.dataBaseURL = "127.0.0.1/mitubo"; 
-config.mitubo.port = 3000
+config.mitubo.port = 80
 
 
 var module = module || {};
