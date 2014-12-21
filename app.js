@@ -180,7 +180,7 @@ app.get('/logout', function(req, res){
 
 // Fichero o ruta no existente:
 app.use(function(req,res,next) {
-    next(new Error('Recurso \"'+req.url+'\" no encontrado'));
+    next(new Error('Recurso '+req.url+' no encontrado'));
 });
 
 // Gestion de errores
