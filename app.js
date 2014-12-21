@@ -13,6 +13,8 @@ var videosRegistry = require('./mdb/videosRegistry');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
+var config = require("./mitubo_config");
+
 
 var partials = require('express-partials');
 // var sessionController = require('./routes/session_controller.js');
@@ -200,6 +202,6 @@ if ('development' == app.get('env')) {
 }
 
 
-http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(config.mitubo.port, function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
