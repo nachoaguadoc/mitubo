@@ -17,7 +17,8 @@
     "express-session": "^1.9.3",
     "crypto": "0.0.3",
     "bcrypt-nodejs": "*",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "forever": "*"
   },
   "engines": {
     "node": "0.10.x",
