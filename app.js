@@ -122,61 +122,6 @@ app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
-// //-- Session ---------------
-
-// app.get('/login',  sessionController.new);
-// app.post('/login', sessionController.create);
-// app.get('/logout', sessionController.destroy);
-
-// //-- Auto Load -------------
-
-// app.param('postid',postController.load);
-// app.param('userid', userController.load);
-
-// //-- Posts -----------------
-
-// app.get(   '/posts',                 postController.index);
-// app.get(   '/posts/new',             sessionController.loginRequired,
-//                                      postController.new);
-// app.get(   '/posts/:postid([0-9]+)', postController.show);
-// app.post(  '/posts',                 sessionController.loginRequired,
-//                                      postController.create);
-
-// app.get(   '/posts/:postid([0-9]+)/edit', sessionController.loginRequired,
-//                                           postController.loggedUserIsAuthor,
-//                                           postController.edit);
-
-// app.put(   '/posts/:postid([0-9]+)', sessionController.loginRequired,
-//                                      postController.loggedUserIsAuthor,
-//                                      postController.update);
-
-// app.delete('/posts/:postid([0-9]+)', sessionController.loginRequired,
-//                                      postController.loggedUserIsAuthor,
-//                                      postController.destroy);
-
-// //-- Users -----------------
-
-// app.get(   '/users',                 userController.index);
-
-// app.get(   '/users/new',             userController.new);
-
-// app.get(   '/users/:userid([0-9]+)', userController.show);
-
-// app.post(  '/users',                 userController.create);
-
-// app.get(   '/users/:userid([0-9]+)/edit', sessionController.loginRequired,
-//                                      userController.loggedUserIsUser,
-//                                      userController.edit);
-
-// app.put(   '/users/:userid([0-9]+)', sessionController.loginRequired,
-//                                      userController.loggedUserIsUser,
-//                                      userController.update);
-
-// app.delete('/users/:userid([0-9]+)', sessionController.loginRequired,
-//                                     userController.destroy);
-
-//--------------------------
-
 
 // Fichero o ruta no existente:
 app.use(function(req,res,next) {
@@ -203,5 +148,5 @@ if ('development' == app.get('env')) {
 
 
 http.createServer(app).listen(config.mitubo.port, function(){
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log('Express server listening on port ' + config.mitubo.port);
 });

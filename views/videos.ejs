@@ -1,1 +1,9 @@
 VIDEOS AQUÍ
+<div id="videosaqui"></div>
+<script>
+	window.onload = function () {
+		var videos = <%- JSON.stringify(list) %>;
+		document.getElementById("videosaqui").innerHTML = videos;
+
+	}
+</script>
