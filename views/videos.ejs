@@ -3,7 +3,15 @@ VIDEOS AQUÍ
 <script>
 	window.onload = function () {
 		var videos = <%- JSON.stringify(list) %>;
-		document.getElementById("videosaqui").innerHTML = videos;
-
+		var videosaqui = document.getElementById("videosaqui");
+		for (var id in videos) {
+			var video = document.createElement("video");
+			var newDiv = document.createElement("div");
+			videosaqui.appendChild(newDiv);
+		    video.setAttribute("src", videos[id]);
+		    video.setAttribute("controls", "controls");
+		    video.setAttribute("preload", "auto");
+			newDiv.appendChild(video);
+		}
 	}
 </script>
