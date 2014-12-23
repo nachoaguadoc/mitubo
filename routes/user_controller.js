@@ -44,7 +44,6 @@ exports.create = function(req, res, next) {
 exports.isLogged = function(req, res, next){
 
   if (!req.session.passport.user){
-
     res.redirect('/login');
 
   }
@@ -76,7 +75,7 @@ exports.videos = function(req, res){
                 res.render('videos', {session: session, list: json})
 
 
-          });
+    });
 
     }).on("error", function(e){
         console.log("Got error: " + e.message);

@@ -1,4 +1,4 @@
-#1/bin/bash
+#!/bin/bash
 #Arranca MongoDB
 
 echo "Arrancando MongoDB"
