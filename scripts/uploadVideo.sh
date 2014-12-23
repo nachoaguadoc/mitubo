@@ -22,7 +22,7 @@ else 	echo "Correcto"
 		if [ -f "$file" ]
 			then
 
-			scp -P 8080 prueba.webm root@localhost:/prueba
+			scp $file root@10.1.2.11:/mnt/nas/"$title"
 		fi
 
 
