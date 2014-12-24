@@ -14,7 +14,9 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
 var config = require("./mitubo_config");
-
+var busboy = require('connect-busboy'); //middleware for form/file upload
+var path = require('path');     //used for file path
+var fs = require('fs-extra');
 
 var partials = require('express-partials');
 // var sessionController = require('./routes/session_controller.js');
@@ -28,7 +30,7 @@ var usersController = require('./routes/user_controller.js');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
-
+app.use(busboy());
 // parse application/json
 app.use(bodyParser.json())
 
@@ -118,6 +120,32 @@ app.post('/login', passport.authenticate('local', { successRedirect: '/videos',
                                    failureRedirect: '/login',
                                    failureFlash: true })
 );
+
+
+
+app.post('/upload', function(req, res){
+
+
+    var fstream;
+    req.pipe(req.busboy);
+    req.busboy.on('file', function (fieldname, file, filename) {
+        console.log("Uploading: " + filename);
+
+        //Path where image will be uploaded
+        fstream = fs.createWriteStream("/root/tmp" + filename);
+        file.pipe(fstream);
+        fstream.on('close', function () {    
+            console.log("Upload Finished of " + filename);              
+            res.redirect('back');           //where to go next
+        });
+    });
+  })
+
+
+
+
+
+
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
