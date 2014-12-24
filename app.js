@@ -132,7 +132,7 @@ app.post('/upload', function(req, res){
         console.log("Uploading: " + filename);
 
         //Path where image will be uploaded
-        fstream = fs.createWriteStream("/root/tmp" + filename);
+        fstream = fs.createWriteStream("/root/tmp/" + filename);
         file.pipe(fstream);
         fstream.on('close', function () {    
             console.log("Upload Finished of " + filename);              
