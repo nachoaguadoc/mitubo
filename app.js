@@ -17,7 +17,6 @@ var config = require("./mitubo_config");
 var Busboy = require('connect-busboy'); //middleware for form/file upload
 var path = require('path');     //used for file path
 var fs = require('fs-extra');
-var inspect = require('util').inspect;
 
 var partials = require('express-partials');
 // var sessionController = require('./routes/session_controller.js');

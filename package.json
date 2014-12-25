@@ -20,8 +20,7 @@
     "mongojs": "0.14.2",
     "passport": "*",
     "passport-local": "^1.0.0",
-    "pg": "~2.11.1",
-    "util": "^0.10.3"
+    "pg": "~2.11.1"
   },
   "engines": {
     "node": "0.10.x",
