@@ -28,14 +28,28 @@ VIDEOS AQUÍ
 	window.onload = function () {
 		var videos = <%- JSON.stringify(list) %>;
 		var videosaqui = document.getElementById("videosaqui");
-		for (var id in videos) {
-			var video = document.createElement("video");
-			var newDiv = document.createElement("div");
-			videosaqui.appendChild(newDiv);
-		    video.setAttribute("src", videos[id]);
-		    video.setAttribute("controls", "controls");
-		    video.setAttribute("preload", "auto");
-			newDiv.appendChild(video);
+		for (var video in videos) {
+
+				createUser(video);
+			
 		}
+	}
+
+	var createUser = function(video){
+		var videoDiv = document.createElement("video");
+		var newDiv = document.createElement("div");
+		var labelTitle = document.createElement("label");
+		var labelDesc = document.createElement("label");
+
+		labelTitle.innerHTML = video["title"];
+		labelDesc.innerHTML = video["desc"];
+
+		videosaqui.appendChild(newDiv);
+	    videoDiv.setAttribute("src", video["url"]);
+	    videoDiv.setAttribute("controls", "controls");
+	    videoDiv.setAttribute("preload", "auto");
+	    newDiv.appendChild(labelTitle);
+		newDiv.appendChild(videoDiv);
+		newDiv.appendChild(labelDesc);
 	}
 </script>

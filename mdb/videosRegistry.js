@@ -56,3 +56,14 @@ var removeVideo = exports.removeVideo = function(id, callback) {
     });
 };
 
+exports.getList = function(callback){
+    db.videos.find({}, function(err, videos) {
+        if (videos === undefined) {
+            log.warn('Videos not found');
+        }
+        if (callback !== undefined) {
+            callback(videos);
+        }
+    });
+}
+

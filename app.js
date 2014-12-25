@@ -173,6 +173,7 @@ app.post('/upload', function(req, res){
           video["id"] = uniqid;
           video["title"] = title;
           video["desc"] = description;
+          video["url"] = "http://10.1.2.11:3000/" + uniqid;
           videosRegistry.addVideo(video, function(msg) {
             console.log(msg);
             res.redirect('back');
