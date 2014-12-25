@@ -14,7 +14,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
 var config = require("./mitubo_config");
-var busboy = require('connect-busboy'); //middleware for form/file upload
+var Busboy = require('connect-busboy'); //middleware for form/file upload
 var path = require('path');     //used for file path
 var fs = require('fs-extra');
 var inspect = require('util').inspect;
@@ -31,7 +31,7 @@ var usersController = require('./routes/user_controller.js');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(busboy());
+app.use(Busboy());
 // parse application/json
 app.use(bodyParser.json())
 
@@ -126,43 +126,57 @@ app.post('/login', passport.authenticate('local', { successRedirect: '/videos',
 
 app.post('/upload', function(req, res){
 
-    var uniqid = Date.now()
     var fstream;
+    var uniqid = Date.now();
 
     var title = req.body.title;
     var description = req.body.description;
 
-    
+    var busboy = new Busboy({ headers: req.headers });
 
 
-    req.pipe(req.busboy);
 
+    var title ="";
+    var description = "";
     req.busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
 
       if (fieldname == "title"){
-        var title = inspect(val);
+        
+        title = val;
+        console.log("TITLE:", title);
       }
 
-      else  var description = inspect(val);
+      else {
+        description = val;
+        console.log("DESCRIPTION:", description);
+      } 
     });
     req.busboy.on('file', function (fieldname, file, filename) {
-        console.log("Uploading: " + filename);
 
-        //Path where image will be uploaded
-        fstream = fs.createWriteStream("/mnt/nas/" + filename);
-        file.pipe(fstream);
-        fstream.on('close', function () {    
-            console.log("Upload Finished of " + filename);              
-        });
+        console.log("Uploading: " + filename);
+        if (filename){
+            //Path where image will be uploaded
+          fstream = fs.createWriteStream("/mnt/nas/" + uniqid);
+          file.pipe(fstream);
+          fstream.on('close', function () {    
+              console.log("Upload Finished of " + uniqid);              
+          });
+        }
+        else {
+          res.redirect('back');
+        }
+        
     });
 
     req.busboy.on('finish', function() {
-          console.log("****************", title, description);
+
           res.redirect('back');           //where to go next
     });
 
-  })
+    req.pipe(req.busboy);
 
+
+  })
 
 
 
