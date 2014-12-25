@@ -111,7 +111,9 @@ app.get('/', usersController.isLogged, function(req, res){
 });
 app.get('/login', usersController.index);
 app.get('/videos',usersController.isLogged, usersController.videos);
-
+app.get('/upload', function(req, res) {
+  res.render(('upload'), {});
+})
 app.get('/users/new', usersController.new)
 app.post('/users/new', usersController.create)
 
@@ -176,7 +178,7 @@ app.post('/upload', function(req, res){
           video["url"] = "http://10.1.2.11:3000/" + uniqid;
           videosRegistry.addVideo(video, function(msg) {
             console.log(msg);
-            res.redirect('back');
+            res.redirect('/videos');
           })
                      //where to go next
     });

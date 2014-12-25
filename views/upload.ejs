@@ -1,0 +1,26 @@
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+        <fieldset>
+            
+        	<div>
+	            <label for="video">Video:</label>
+	            <input type="file" name="username">Video</input>
+        	</div>
+        <div>
+        	<label>Titulo: </label>
+
+            <input type="textarea" name="title" class="login_text"></input>
+        </div>
+        <div>
+        	<label>Descripción: </label>
+            <input type="textarea" name="description" class="login_text"></input>
+        </div>
+        <div>
+            <input type="submit" value="Send message" />
+        </div>
+        </fieldset>
+</form>
+<br></br>
+<form action="/removeData" method="post">
+	<input type="submit" value="Borrar DB"/>
+</form>

@@ -1,37 +1,17 @@
-VIDEOS AQUÍ
-<div id="videosaqui"></div>
 
-
-<form action="/upload" method="post" enctype="multipart/form-data">
-        <fieldset>
-            
-        	<div>
-	            <label for="video">Video:</label>
-	            <input type="file" name="username">Video</input>
-        	</div>
-        <div>
-        	<label>Titulo: </label>
-
-            <input type="textarea" name="title" class="login_text"></input>
-        </div>
-        <div>
-        	<label>Descripción: </label>
-            <input type="textarea" name="description" class="login_text"></input>
-        </div>
-        <div>
-            <input type="submit" value="Send message" />
-        </div>
-        </fieldset>
+<br></br>
+<form action="/upload" method="get">
+    <input type="submit" value="Subir nuevo video" />
 </form>
-<form action="/removeData" method="post">
-	<input type="submit">Borrar DB</input>
-</form>
+
+<div id="videosList"></div>
+
 
 
 <script>
 	window.onload = function () {
 		var videos = <%- JSON.stringify(list) %>;
-		var videosaqui = document.getElementById("videosaqui");
+		var videosList = document.getElementById("videosList");
 		for (var video in videos) {
 
 				createUser(videos[video]);
@@ -40,23 +20,29 @@ VIDEOS AQUÍ
 	}
 
 	var createUser = function(video){
-		var videoDiv = document.createElement("video");
+		var videoScreen = document.createElement("video");
+		var titleDiv = document.createElement("div");
+		var descDiv = document.createElement("div");
+		var videoDiv = document.createElement("div");
 		var newDiv = document.createElement("div");
-		var labelTitle = document.createElement("label");
-		var labelDesc = document.createElement("label");
-		var br = document.createElement("br");
+		var titleLabel = document.createElement("label");
+		var descLabel = document.createElement("label");
 
-		labelTitle.innerHTML = video["title"];
-		labelDesc.innerHTML = video["desc"];
+		titleLabel.innerHTML = video["title"];
+		descLabel.innerHTML = video["desc"];
 
-		videosaqui.appendChild(newDiv);
-	    videoDiv.setAttribute("src", video["url"]);
-	    videoDiv.setAttribute("controls", "controls");
-	    videoDiv.setAttribute("preload", "auto");
-	    newDiv.appendChild(labelTitle);
-	    newDiv.appendchild(br);
+		videosList.appendChild(newDiv);
+	    videoScreen.setAttribute("src", video["url"]);
+	    videoScreen.setAttribute("controls", "controls");
+	    videoScreen.setAttribute("preload", "auto");
+
+	    newDiv.appendChild(titleDiv);
 		newDiv.appendChild(videoDiv);
-	    newDiv.appendchild(br);
-		newDiv.appendChild(labelDesc);
+		newDiv.appendChild(descDiv);
+
+		titleDiv.appendChild(titleLabel);
+		videoDiv.appendChild(videoScreen);
+		descDiv.appendChild(descLabel);
+
 	}
 </script>
