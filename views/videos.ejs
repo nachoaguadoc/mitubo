@@ -5,13 +5,25 @@ VIDEOS AQUÍ
 <form action="/upload" method="post" enctype="multipart/form-data">
         <fieldset>
             
+        	<div>
+	            <label for="video">Video:</label>
+	            <input type="file" name="username">Video</input>
+        	</div>
+        <div>
+        	<label>Titulo: </label>
 
-            <label for="video">Video:</label>
-            <input type="file" name="username">Video</input>
+            <input type="textarea" name="title" class="login_text"></input>
+        </div>
+        <div>
+        	<label>Descripción: </label>
+            <input type="textarea" name="description" class="login_text"></input>
+        </div>
+        <div>
             <input type="submit" value="Send message" />
-
+        </div>
         </fieldset>
 </form>
+
 <script>
 	window.onload = function () {
 		var videos = <%- JSON.stringify(list) %>;
