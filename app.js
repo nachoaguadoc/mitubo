@@ -17,6 +17,7 @@ var config = require("./mitubo_config");
 var busboy = require('connect-busboy'); //middleware for form/file upload
 var path = require('path');     //used for file path
 var fs = require('fs-extra');
+var inspect = require('util').inspect;
 
 var partials = require('express-partials');
 // var sessionController = require('./routes/session_controller.js');
@@ -125,20 +126,41 @@ app.post('/login', passport.authenticate('local', { successRedirect: '/videos',
 
 app.post('/upload', function(req, res){
 
-
+    var uniqid = Date.now()
     var fstream;
+
+    var title = req.body.title;
+    var description = req.body.description;
+
+    
+
+
     req.pipe(req.busboy);
+
+    req.busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
+
+      if (fieldname == "title"){
+        var title = inspect(val);
+      }
+
+      else  var description = inspect(val);
+    });
     req.busboy.on('file', function (fieldname, file, filename) {
         console.log("Uploading: " + filename);
 
         //Path where image will be uploaded
-        fstream = fs.createWriteStream("/root/tmp/" + filename);
+        fstream = fs.createWriteStream("/mnt/nas/" + filename);
         file.pipe(fstream);
         fstream.on('close', function () {    
             console.log("Upload Finished of " + filename);              
-            res.redirect('back');           //where to go next
         });
     });
+
+    req.busboy.on('finish', function() {
+          console.log("****************", title, description);
+          res.redirect('back');           //where to go next
+    });
+
   })
 
 
