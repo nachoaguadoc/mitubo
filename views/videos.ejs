@@ -44,6 +44,7 @@ VIDEOS AQUÍ
 		var newDiv = document.createElement("div");
 		var labelTitle = document.createElement("label");
 		var labelDesc = document.createElement("label");
+		var br = document.createElement("br");
 
 		labelTitle.innerHTML = video["title"];
 		labelDesc.innerHTML = video["desc"];
@@ -53,7 +54,9 @@ VIDEOS AQUÍ
 	    videoDiv.setAttribute("controls", "controls");
 	    videoDiv.setAttribute("preload", "auto");
 	    newDiv.appendChild(labelTitle);
+	    newDiv.appendchild(br);
 		newDiv.appendChild(videoDiv);
+	    newDiv.appendchild(br);
 		newDiv.appendChild(labelDesc);
 	}
 </script>
