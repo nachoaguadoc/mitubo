@@ -169,7 +169,15 @@ app.post('/upload', function(req, res){
 
     req.busboy.on('finish', function() {
 
-          res.redirect('back');           //where to go next
+          var video = {}
+          video["id"] = uniqid;
+          video["title"] = title;
+          video["desc"] = description;
+          videosRegistry.addVideo(video, function(msg) {
+            console.log(msg);
+            res.redirect('back');
+          })
+                     //where to go next
     });
 
     req.pipe(req.busboy);
