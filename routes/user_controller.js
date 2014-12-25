@@ -1,4 +1,6 @@
 
+var videosRegistry = require('./../mdb/videosRegistry');
+
 var usersRegistry = require('./../mdb/usersRegistry');
 var bcrypt = require('bcrypt-nodejs');
 var crypto = require('crypto');
