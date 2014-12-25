@@ -218,6 +218,12 @@ if ('development' == app.get('env')) {
   });
 }
 
+app.post("/removeData", function(req, res){
+  videosRegistry.removeVideos(function(){
+    console.log("Videos borrados");
+  })
+})
+
 
 http.createServer(app).listen(config.mitubo.port, function(){
   console.log('Express server listening on port ' + config.mitubo.port);

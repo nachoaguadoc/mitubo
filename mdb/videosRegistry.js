@@ -67,3 +67,9 @@ exports.getList = function(callback){
     });
 }
 
+exports.removeVideos = function(callback){
+
+    db.videos.remove();
+    
+}
+
