@@ -11,4 +11,19 @@ VIDEOS AQUÍ
             <input type="submit" value="Send message" />
 
         </fieldset>
-    </form>
+</form>
+<script>
+	window.onload = function () {
+		var videos = <%- JSON.stringify(list) %>;
+		var videosaqui = document.getElementById("videosaqui");
+		for (var id in videos) {
+			var video = document.createElement("video");
+			var newDiv = document.createElement("div");
+			videosaqui.appendChild(newDiv);
+		    video.setAttribute("src", videos[id]);
+		    video.setAttribute("controls", "controls");
+		    video.setAttribute("preload", "auto");
+			newDiv.appendChild(video);
+		}
+	}
+</script>
