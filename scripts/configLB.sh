@@ -1,0 +1,1 @@
+xr --verbose --server tcp:0:80 --backend 10.1.2.11:80 --backend 10.1.2.12:80 --backend 10.1.2.13:80 --web-interface 0:8001
