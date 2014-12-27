@@ -6,6 +6,10 @@ var bcrypt = require('bcrypt-nodejs');
 var crypto = require('crypto');
 var http = require('http');
 var config = require('./../mitubo_config.js');
+var Busboy = require('connect-busboy'); //middleware for form/file upload
+var path = require('path');     //used for file path
+var fs = require('fs-extra');
+
 exports.index = function(req, res){
 
   var session = req.session.passport.user
