@@ -106,16 +106,16 @@ passport.use(new LocalStrategy(
 
 
 //-- Rutas -----------------
-app.get('/', usersController.isLogged, function(req, res){
+app.get('/', mituboController.isLogged, function(req, res){
   res.redirect('/videos');
 });
-app.get('/login', usersController.index);
-app.get('/videos',usersController.isLogged, usersController.videos);
+app.get('/login', mituboController.index);
+app.get('/videos',mituboController.isLogged, mituboController.videos);
 app.get('/upload', function(req, res) {
   res.render(('upload'), {});
 })
-app.get('/users/new', usersController.new)
-app.post('/users/new', usersController.create)
+app.get('/users/new', mituboController.new)
+app.post('/users/new', mituboController.create)
 
 
 app.post('/login', passport.authenticate('local', { successRedirect: '/videos',
@@ -125,7 +125,7 @@ app.post('/login', passport.authenticate('local', { successRedirect: '/videos',
 
 
 
-app.post('/upload', usersController.upload)
+app.post('/upload', mituboController.upload)
 
 
 
