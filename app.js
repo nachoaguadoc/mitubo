@@ -82,10 +82,9 @@ passport.deserializeUser(function(user, done) {
 });
 
 passport.use(new LocalStrategy(
-  function(email, password, done) {
+  function(username, password, done) {
 
-
-    db.users.findOne({ email: email }, function(err, user) {
+    db.users.findOne({ email: username }, function(err, user) {
       var isValidPassword = function(password){
         return bcrypt.compareSync(password, user.password); // true
       }
