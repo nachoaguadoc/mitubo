@@ -162,6 +162,11 @@ app.post("/removeData", function(req, res){
   })
 })
 
+app.post("/fav", function(req, res, next){
+	console.log(req.body.videoFav);
+	next();
+}, mituboController.videos);
+
 
 http.createServer(app).listen(config.mitubo.port, function(){
   console.log('Express server listening on port ' + config.mitubo.port);

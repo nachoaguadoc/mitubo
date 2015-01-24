@@ -35,7 +35,7 @@ exports.new = function(req, res, next) {
 exports.create = function(req, res, next) {
 
     bcrypt.hash(req.body.password, null, null, function(err, hash) {
-    	var user = {username:req.body.username, email:req.body.email, password:hash};
+    	var user = {username:req.body.username, email:req.body.email, password:hash, favs:[]};
 
 		usersRegistry.addUser(user, function(msg){
         	console.log(msg);
@@ -123,7 +123,8 @@ exports.upload = function(req, res){
           video["title"] = title;
           video["desc"] = description;
           video["url"] = "http://" + config.mitubo.videosURL + "/" + uniqid;
-          videosRegistry.addVideo(video, function(msg) {
+          
+	videosRegistry.addVideo(video, function(msg) {
             console.log(msg);
             res.redirect('/videos');
           })

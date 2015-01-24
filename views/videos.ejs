@@ -30,10 +30,23 @@
 		var newDiv = document.createElement("div");
 		var titleLabel = document.createElement("label");
 		var descLabel = document.createElement("label");
+		var fav = document.createElement("form");
+		fav.setAttribute("method", "post");
+		fav.setAttribute("action", "/fav");
+		
+		var favId = document.createElement("input");
+		favId.setAttribute("type", "hidden");
+		favId.value = video["id"];
+		favId.name = "videoFav";
+		var s = document.createElement("input");
+		s.setAttribute("type", "submit");
+		s.setAttribute("value","FAV");
+		fav.appendChild(favId);
+		fav.appendChild(s);
 
 		titleLabel.innerHTML = video["title"];
 		descLabel.innerHTML = video["desc"];
-
+		
 		videosList.appendChild(newDiv);
 	    videoScreen.setAttribute("src", video["url"]);
 	    videoScreen.setAttribute("controls", "controls");
@@ -42,7 +55,7 @@
 	    newDiv.appendChild(titleDiv);
 		newDiv.appendChild(videoDiv);
 		newDiv.appendChild(descDiv);
-
+		newDiv.appendChild(fav);
 		titleDiv.appendChild(titleLabel);
 		videoDiv.appendChild(videoScreen);
 		descDiv.appendChild(descLabel);
