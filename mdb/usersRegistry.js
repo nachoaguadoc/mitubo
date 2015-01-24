@@ -56,3 +56,26 @@ var removeUser = exports.removeUser = function(id, callback) {
     });
 };
 
+var updateFavs = exports.updateFavs = function(userId, videoId, callback){
+    db.users.findOne({
+        _id: db.ObjectId(id)
+    }, function(err, user) {
+        if (user === undefined) {
+            console.log('User ', id, ' not found');
+        }
+
+        var favs = user["favs"];
+        var i = favs.indexOf(videoId);
+        if(i != -1) {
+            array.splice(i, 1);
+        }
+        else favs.push(videoId);
+
+        user["favs"] = favs;
+
+        db.users.update({_id:userId}, {$set: {favs:favs}});
+
+        callback(user);
+    });
+}
+
