@@ -67,13 +67,22 @@ exports.updateFavs = function(id, videoId, callback){
             var favs = user["favs"];
             var i = favs.indexOf(videoId);
             if(i != -1) {
-                array.splice(i, 1);
+                favs.splice(i, 1);
             }
-            else favs.push(videoId);
+            else {
+		console.log("++++++++++++++++", favs);
+		 favs.push(videoId);
+}
+	    
+	    user["favs"] = favs;
+		
+		console.log("*************************", user["favs"]);
+            db.users.save(user, function(){
+		callback(user);
+		
+});
 
-            db.users.update({_id:id}, {$set: {favs:favs}});
-
-            callback(user);
+            
         }
 
     });
