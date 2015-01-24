@@ -163,13 +163,11 @@ app.post("/removeData", function(req, res){
 })
 
 app.post("/fav", function(req, res, next){
-  console.log(req.session.passport.user)
-  // usersRegistry.udpateFavs(req.body.userId, req.body.videoFav, function(msg){
-  //   console.log(msg);
-  //     next();
+  usersRegistry.updateFavs(req.session.passport.user._id, req.body.videoFav, function(msg){
+    console.log(msg);
+      next();
 
-  // })
-  next();
+  })
 }, mituboController.videos);
 
 
