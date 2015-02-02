@@ -70,17 +70,16 @@ exports.updateFavs = function(id, videoId, callback){
                 favs.splice(i, 1);
             }
             else {
-		console.log("++++++++++++++++", favs);
-		 favs.push(videoId);
-}
+		      console.log("++++++++++++++++", favs);
+		      favs.push(videoId);
+            }
 	    
-	    user["favs"] = favs;
+	       user["favs"] = favs;
 		
-		console.log("*************************", user["favs"]);
+		  console.log("*************************", user["favs"]);
             db.users.save(user, function(){
-		callback(user);
-		
-});
+		          callback(user);
+            });
 
             
         }

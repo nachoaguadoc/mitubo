@@ -165,10 +165,43 @@ app.post("/removeData", function(req, res){
 app.post("/fav", function(req, res, next){
   usersRegistry.updateFavs(req.session.passport.user._id, req.body.videoFav, function(msg){
     console.log(msg);
-      next();
+      res.redirect("/videos")
 
   })
-}, mituboController.videos);
+});
+
+app.get("/favs", function(req, res, next){
+
+    var session = req.session.passport.user
+    var id = session._id;
+    var list = [];
+    db.users.findOne({
+        _id: db.ObjectId(id)
+    }, function(err, user) {
+        if (user === undefined) {
+            console.log('User ', id, ' not found');
+        }
+        else {
+            
+            for (var i in user["favs"]){
+                db.videos.findOne({
+                  id: user["favs"][i]
+                }, function(err, video){
+                  if (video === undefined) {
+                    console.log('Video not found');
+                  }
+                  else {
+                    list.push(video);
+                  }
+                })
+            }
+
+            res.render("videos", {session:session, list:list})
+            
+        }
+
+    });
+})
 
 
 http.createServer(app).listen(config.mitubo.port, function(){
