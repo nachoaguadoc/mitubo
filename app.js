@@ -190,6 +190,10 @@ app.get("/favs", function(req, res, next){
                 }, function(err, video){
                   if (video === null) {
                     console.log('Video not found');
+                    if (user["favs"].length == i+1) {
+                         res.render("videos", {session:session, list:list})
+
+                    }
                   }
                   else {
                     console.log("Video found", JSON.stringify(video));
