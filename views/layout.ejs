@@ -9,7 +9,7 @@
 
 <body>
    <header>
-     <h1> COmputación en REd - CORE</h1>
+     <h1> MITUBO - CDPS </h1>
      <nav> 
         <div id='logininfo'>
            <% if (session) { %>
@@ -17,20 +17,17 @@
                <%= session.username %>
                <a href='/logout'> Logout </a> 
            <% } else { %>
-              <a href='/login?redir=/posts'> Login </a> 
+              <a href='/login?redir=/videos'> Login </a> 
               <a href='/users/new'> Register </a> 
            <% } %>
            <% } else { %>
-              <a href='/login?redir=/posts'> Login </a> 
+              <a href='/login?redir=/videos'> Login </a> 
               <a href='/users/new'> Register </a> 
            <% } %>
         </div>
 
-        <a href="/">Home</a>
-        <a href="/posts">Posts</a>
-        <a href="/users">Usuarios</a>
-        <a href="/creditos.html">Créditos</a>
      </nav>
+     <br>
    </header>
   
    

@@ -106,7 +106,7 @@ article {
 }
 
 #logininfo {
-  float: right;
+  float: left;
   clear: both;
 }
 
@@ -118,9 +118,6 @@ label{
   text-shadow: 0 1px 0 #fff;
   font-size: 14px;
   font-weight: bold;
-  float: right;
-  padding-right: 40%;
-  word-break: break-all;
 }
 .register_text {
     width: 50%;
@@ -163,7 +160,7 @@ label{
 }
 
 input[type=submit] {
-  float:left;
+  margin-left: 25%;
   font-size: 16px;
   background: linear-gradient(#ffbc00 5%, #ffdd7f 100%);
   border: 1px solid #e5a900;
