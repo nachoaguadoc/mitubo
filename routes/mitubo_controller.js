@@ -119,7 +119,7 @@ exports.upload = function(req, res){
     req.busboy.on('finish', function() {
 
           var video = {}
-          video["uniqid"] = uniqid;
+          video["uniqid"] = uniqid.toString();
           video["title"] = title;
           video["desc"] = description;
           video["url"] = "http://" + config.mitubo.videosURL + "/" + uniqid;

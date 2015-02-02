@@ -182,9 +182,12 @@ app.get("/favs", function(req, res, next){
             console.log('User ', id, ' not found');
         }
         else {
-            
+  		if (user["favs"].length == 0) {
+			res.render("videos", {session:session, list:[]})
+		}	         
             for (var i in user["favs"]){
-              var uniqid = "'" + user["favs"][i] + "'";
+		
+              var uniqid = user["favs"][i];
                 db.videos.findOne({
                   "uniqid": uniqid
                 }, function(err, video){
