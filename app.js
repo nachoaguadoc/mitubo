@@ -175,6 +175,7 @@ app.get("/favs", function(req, res, next){
     var session = req.session.passport.user
     var id = session._id;
     var list = [];
+    var count = 0;
     db.users.findOne({
         _id: db.ObjectId(id)
     }, function(err, user) {
@@ -186,14 +187,15 @@ app.get("/favs", function(req, res, next){
 			res.render("videos", {session:session, list:[]})
 		}	         
             for (var i in user["favs"]){
-		
+	      	
               var uniqid = user["favs"][i];
                 db.videos.findOne({
                   "uniqid": uniqid
                 }, function(err, video){
+	          count++;
                   if (video === null) {
                     console.log('Video not found');
-                    if (user["favs"].length == i+1) {
+                     if (user["favs"].length == count) {
                          res.render("videos", {session:session, list:list})
 
                     }
@@ -201,7 +203,8 @@ app.get("/favs", function(req, res, next){
                   else {
                     console.log("Video found", JSON.stringify(video));
                     list.push(video);
-                    if (user["favs"].length == i+1) {
+                    console.log(user["favs"].length, count);
+		    if (user["favs"].length == count) {
                          res.render("videos", {session:session, list:list})
 
                     }
