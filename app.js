@@ -184,8 +184,9 @@ app.get("/favs", function(req, res, next){
         else {
             
             for (var i in user["favs"]){
+              var uniqid = "'" + user["favs"][i] + "'";
                 db.videos.findOne({
-                  "uniqid": user["favs"][i]
+                  "uniqid": uniqid
                 }, function(err, video){
                   if (video === null) {
                     console.log('Video not found');
