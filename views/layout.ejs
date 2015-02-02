@@ -15,12 +15,17 @@
            <% if (session) { %>
             <% if (session.username) { %>
                <%= session.username %>
+              <a href='/videos'> Videos </a>
+              <a href='/favs'> Favoritos </a>
                <a href='/logout'> Logout </a> 
            <% } else { %>
+              <a href='/videos'> Videos </a>
+              <a href='/favs'> Favoritos </a>
               <a href='/login?redir=/videos'> Login </a> 
               <a href='/users/new'> Register </a> 
            <% } %>
            <% } else { %>
+              <a href='/videos'> Videos </a>
               <a href='/login?redir=/videos'> Login </a> 
               <a href='/users/new'> Register </a> 
            <% } %>
