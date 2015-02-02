@@ -178,25 +178,29 @@ app.get("/favs", function(req, res, next){
     db.users.findOne({
         _id: db.ObjectId(id)
     }, function(err, user) {
-        if (user === undefined) {
+        if (user === null) {
             console.log('User ', id, ' not found');
         }
         else {
             
             for (var i in user["favs"]){
                 db.videos.findOne({
-                  id: user["favs"][i]
+                  "uniqid": user["favs"][i]
                 }, function(err, video){
-                  if (video === undefined) {
+                  if (video === null) {
                     console.log('Video not found');
                   }
                   else {
+                    console.log("Video found", JSON.stringify(video));
                     list.push(video);
+                    if (user["favs"].length == i+1) {
+                         res.render("videos", {session:session, list:list})
+
+                    }
                   }
                 })
             }
 
-            res.render("videos", {session:session, list:list})
             
         }
 
