@@ -62,13 +62,10 @@ exports.isLogged = function(req, res, next){
 }
 
 exports.videos = function(req, res){
-    var session = req.session.passport.user
 
 
-    videosRegistry.getList(function(videos){
+        res.render('videos',{ session:"AAA" })
 
-        res.render('videos', {session: session, list: videos})
-    })
 
 }
 

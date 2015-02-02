@@ -1,5 +1,7 @@
 body {
-  background-image: url("/images/bg.jpg");
+  width: 100%;
+  height: 100%;
+  background-image: url("http://api.thumbr.it/whitenoise-361x370.png?");
   padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -116,6 +118,9 @@ label{
   text-shadow: 0 1px 0 #fff;
   font-size: 14px;
   font-weight: bold;
+  float: right;
+  padding-right: 40%;
+  word-break: break-all;
 }
 .register_text {
     width: 50%;
@@ -189,4 +194,43 @@ a {
     width: 304px;
     height:250px;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);*/
+}
+
+
+
+.blockDiv {
+  position: relative;
+  height: 380px;
+  width: 1500px;
+}
+
+.videoDiv{
+  position: absolute;
+  left: 0px;
+
+}
+
+.infoDiv {
+  position: absolute;
+  left: 50%;
+  width: 600px;
+  height: 350px;
+  word-break: break-all;
+}
+
+.titleDiv {
+  font-size: 40px;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.descDiv {
+  font-size: 18px;
+}
+
+.favButton {
+  position: absolute;
+  width: 400px;
+  bottom: 30px;
+  left: 50%;
 }

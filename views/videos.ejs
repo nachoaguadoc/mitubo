@@ -13,30 +13,61 @@
 
 <script>
 	window.onload = function () {
-		var videos = <%- JSON.stringify(list) %>;
-		var videosList = document.getElementById("videosList");
-		for (var video in videos) {
 
-				createUser(videos[video]);
+		var url = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
+		var title = "HOLA";
+		var description = "kdsjafñlkdsjafñlkadasjfñaksjfñlaksjfñkalsjfkañ";
+				createUser(url, title, description);
+								createUser(url, title, description);
+
 			
-		}
+
 	}
 
-	var createUser = function(video){
-		var videoScreen = document.createElement("video");
+	var createUser = function(url, title, description){
+		var hr = document.createElement("hr")
+
+		var blockDiv = document.createElement("div");
+		blockDiv.setAttribute("id", "blockDiv");
+		blockDiv.className = "blockDiv";
+		videosList.appendChild(blockDiv);
+
+		var videoDiv = document.createElement("div");
+		videoDiv.setAttribute("id", "videoDiv");
+		videoDiv.className = "videoDiv";
+
+
 		var titleDiv = document.createElement("div");
 		var descDiv = document.createElement("div");
-		var videoDiv = document.createElement("div");
-		var newDiv = document.createElement("div");
-		var titleLabel = document.createElement("label");
-		var descLabel = document.createElement("label");
+		var infoDiv = document.createElement("div");
+		infoDiv.className = "infoDiv";
+
+
+
+		var videoScreen = document.createElement("video");
+		videoScreen.setAttribute("src", url);
+	    videoScreen.setAttribute("controls", "controls");
+	    videoScreen.setAttribute("preload", "auto");
+		videoDiv.appendChild(videoScreen);
+	
+		titleDiv.innerHTML = title;
+		titleDiv.className = "titleDiv";
+
+		descDiv.innerHTML = description;
+		descDiv.className = "descDiv";
+
+		infoDiv.appendChild(titleDiv);
+		infoDiv.appendChild(descDiv);
+
 		var fav = document.createElement("form");
 		fav.setAttribute("method", "post");
 		fav.setAttribute("action", "/fav");
-		
+		fav.className = "favButton";
+
+
 		var favId = document.createElement("input");
 		favId.setAttribute("type", "hidden");
-		favId.value = video["id"];
+		favId.value = url;
 		favId.name = "videoFav";
 
 		var s = document.createElement("input");
@@ -46,21 +77,12 @@
 		fav.appendChild(favId);
 		fav.appendChild(s);
 
-		titleLabel.innerHTML = video["title"];
-		descLabel.innerHTML = video["desc"];
 		
-		videosList.appendChild(newDiv);
-	    videoScreen.setAttribute("src", video["url"]);
-	    videoScreen.setAttribute("controls", "controls");
-	    videoScreen.setAttribute("preload", "auto");
+		blockDiv.appendChild(videoDiv);
+		blockDiv.appendChild(infoDiv);
+		blockDiv.appendChild(fav);
+		videosList.appendChild(hr);
 
-	    newDiv.appendChild(titleDiv);
-		newDiv.appendChild(videoDiv);
-		newDiv.appendChild(descDiv);
-		newDiv.appendChild(fav);
-		titleDiv.appendChild(titleLabel);
-		videoDiv.appendChild(videoScreen);
-		descDiv.appendChild(descLabel);
 
 	}
 </script>
